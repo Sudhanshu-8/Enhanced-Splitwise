@@ -1,16 +1,60 @@
-# splitbill
+# Enhanced SplitBill – Flutter Frontend
 
-A new Flutter project.
+Modern mobile app that powers the Enhanced Splitwise experience. It uses Flutter + Riverpod to deliver a polished UI with OCR-assisted expense creation, group dashboards, and settlement flows.
+
+## Features
+
+- Animated splash & auth onboarding flow
+- Riverpod + GoRouter architecture (scalable, testable)
+- Dashboard with live group balances
+- OCR-driven expense entry with image picker
+- Settlement manager showcasing payment links
+- Profile page with secure logout & settings
+
+## Tech Stack
+
+- Flutter 3.24+
+- Riverpod 2
+- GoRouter 14
+- Dio HTTP client
+- FlexColorScheme + Google Fonts for theming
 
 ## Getting Started
 
-This project is a starting point for a Flutter application.
+```bash
+flutter pub get
+flutter run
+```
 
-A few resources to get you started if this is your first Flutter project:
+By default the app points to `http://localhost:8000/api/v1`. Override when needed:
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+```bash
+flutter run --dart-define=API_BASE_URL=https://api.example.com/api/v1
+```
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+### Platform Notes
+
+- **iOS**: Add the following to `ios/Runner/Info.plist` for receipt scanning:
+
+  ```xml
+  <key>NSPhotoLibraryUsageDescription</key>
+  <string>SplitBill needs access to your photo library to attach receipts.</string>
+  <key>NSCameraUsageDescription</key>
+  <string>SplitBill uses the camera to scan receipts.</string>
+  ```
+
+- **Android**: Image picker permissions are auto-declared via the plugin; ensure you have `compileSdkVersion` ≥ 34.
+
+## Testing
+
+- Add widget/unit tests under `test/`
+- Use `flutter test --coverage` for reports
+
+## Folder Highlights
+
+- `lib/core` – theming, config, storage, networking
+- `lib/features` – feature slices (auth, dashboard, expenses, etc.)
+- `lib/shared` – reusable widgets & providers
+- `lib/router` – centralized navigation graph
+
+Happy hacking! 🚀
